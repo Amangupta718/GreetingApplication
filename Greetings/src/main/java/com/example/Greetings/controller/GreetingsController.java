@@ -9,15 +9,30 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/greetings")
 public class GreetingsController {
     private final GreetingService greetingService;
-
+    //UC-2
     @Autowired
     public GreetingsController(GreetingService greetingService) {
         this.greetingService = greetingService;
     }
-
+    //UC-3
     @GetMapping
-    public Greeting getGreetings() {
-        return new Greeting("Hello, My name is Aman Gupta!");
+    public Greeting getGreeting(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+
+        String message;
+
+        if (firstName != null && lastName != null) {
+            message = "Hello, " + firstName + " " + lastName + "!";
+        } else if (firstName != null) {
+            message = "Hello, " + firstName + "!";
+        } else if (lastName != null) {
+            message = "Hello, Mr./Ms. " + lastName + "!";
+        } else {
+            message = "Hello, World!";
+        }
+
+        return new Greeting(message);
     }
 
     @PostMapping
