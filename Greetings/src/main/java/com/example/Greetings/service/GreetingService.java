@@ -1,6 +1,6 @@
-package com.example.greeting.service;
+package com.example.Greetings.service;
 
-import com.example.greeting.model.Greeting;
+import com.example.Greetings.model.Greeting;
 import org.springframework.stereotype.Service;
 
 @Service
