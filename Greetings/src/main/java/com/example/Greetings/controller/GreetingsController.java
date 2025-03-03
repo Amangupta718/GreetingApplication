@@ -47,7 +47,11 @@ public class GreetingsController {
     public Greeting getGreetingById(@PathVariable Long id) {
         return greetingService.getGreetingById(id);
     }
-
+    //UC-6(show all the Greeting messages in the repository)
+    @GetMapping("/greetings")
+    public List<Greeting> getAllGreetings() {
+        return greetingService.getAllGreetings();
+    }
     @PostMapping("/create")
     public Greeting createGreeting(@RequestBody Greeting newGreeting) {
         return new Greeting("Greeting Created: " + newGreeting.getMessage());
