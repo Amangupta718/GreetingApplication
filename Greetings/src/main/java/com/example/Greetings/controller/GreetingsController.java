@@ -10,9 +10,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/greetings")
 public class GreetingsController {
+    @Autowired
     private final GreetingService greetingService;
     //UC-2
-    @Autowired
+
     public GreetingsController(GreetingService greetingService) {
         this.greetingService = greetingService;
     }
@@ -41,11 +42,10 @@ public class GreetingsController {
     public Greeting saveGreeting(@RequestBody Greeting greeting) {
         return greetingService.saveGreeting(greeting.getMessage());
     }
-
-    // Retrieve All Saved Greetings
-    @GetMapping("/greetings")
-    public List<Greeting> getAllGreetings() {
-        return greetingService.getAllGreetings();
+    //UC-5( Fetches the greeting message by ID)
+    @GetMapping("/{id}")
+    public Greeting getGreetingById(@PathVariable Long id) {
+        return greetingService.getGreetingById(id);
     }
 
     @PostMapping("/create")
