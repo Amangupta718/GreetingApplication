@@ -5,6 +5,8 @@ import com.example.Greetings.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/greetings")
 public class GreetingsController {
@@ -34,8 +36,19 @@ public class GreetingsController {
 
         return new Greeting(message);
     }
+    //UC-4
+    @PostMapping("/save")
+    public Greeting saveGreeting(@RequestBody Greeting greeting) {
+        return greetingService.saveGreeting(greeting.getMessage());
+    }
 
-    @PostMapping
+    // Retrieve All Saved Greetings
+    @GetMapping("/greetings")
+    public List<Greeting> getAllGreetings() {
+        return greetingService.getAllGreetings();
+    }
+
+    @PostMapping("/create")
     public Greeting createGreeting(@RequestBody Greeting newGreeting) {
         return new Greeting("Greeting Created: " + newGreeting.getMessage());
     }
