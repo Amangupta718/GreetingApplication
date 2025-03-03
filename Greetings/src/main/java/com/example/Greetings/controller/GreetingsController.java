@@ -3,6 +3,7 @@ package com.example.Greetings.controller;
 import com.example.Greetings.model.Greeting;
 import com.example.Greetings.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,6 +57,12 @@ public class GreetingsController {
     @PutMapping("/{id}")
     public Greeting updateGreeting(@PathVariable Long id, @RequestBody Greeting greeting) {
         return greetingService.updateGreeting(id, greeting.getMessage());
+    }
+    //UC-8 (Delete a Greeting message in the repository)
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteGreeting(@PathVariable Long id) {
+        greetingService.deleteGreeting(id);
+        return ResponseEntity.ok("Greeting deleted successfully!");
     }
 
     @PostMapping("/create")
