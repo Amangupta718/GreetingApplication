@@ -12,7 +12,6 @@ public class Greeting {
 
     private String message;
 
-    // Constructors
     public Greeting() {}
 
     public Greeting(String message) {

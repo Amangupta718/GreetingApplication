@@ -42,16 +42,22 @@ public class GreetingsController {
     public Greeting saveGreeting(@RequestBody Greeting greeting) {
         return greetingService.saveGreeting(greeting.getMessage());
     }
-    //UC-5( Fetches the greeting message by ID)
+    //UC-5 (Fetches the greeting message by ID)
     @GetMapping("/{id}")
     public Greeting getGreetingById(@PathVariable Long id) {
         return greetingService.getGreetingById(id);
     }
-    //UC-6(show all the Greeting messages in the repository)
+    //UC-6 (show all the Greeting messages in the repository)
     @GetMapping("/greetings")
     public List<Greeting> getAllGreetings() {
         return greetingService.getAllGreetings();
     }
+    //UC-7 (Update Greeting by ID)
+    @PutMapping("/{id}")
+    public Greeting updateGreeting(@PathVariable Long id, @RequestBody Greeting greeting) {
+        return greetingService.updateGreeting(id, greeting.getMessage());
+    }
+
     @PostMapping("/create")
     public Greeting createGreeting(@RequestBody Greeting newGreeting) {
         return new Greeting("Greeting Created: " + newGreeting.getMessage());
